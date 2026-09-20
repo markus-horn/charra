@@ -6,12 +6,12 @@ sudo pkill -9 swtpm
 
 ## remove TPM2 simulator state and delete FAPI keystore
 if [ -e /tmp/swtpm20 ]; then
-    sudo rm -rf -- /tmp/swtpm20
+    sudo rm -rf -- '/tmp/swtpm20'
 
-    jq -r '.user_dir, .system_dir' /usr/local/etc/tpm2-tss/fapi-config.json |
+    jq -r '.user_dir, .system_dir' '/usr/local/etc/tpm2-tss/fapi-config.json' |
     while IFS= read -r dir; do
-        dir=$(printf '%s\n' "$dir" | sed "s|^~|$HOME|")
-        sudo rm -rf -- "$dir"/* "$dir"/.[!.]* "$dir"/..?*
+        dir=$(printf '%s\n' "${dir}" | sed "s|^~|${HOME}|")
+        sudo rm -rf -- "${dir}"/* "${dir}"/.[!.]* "${dir}"/..?*
     done
 fi
 ## create TPM2 simulator state, including EK Cert and Platform Cert
