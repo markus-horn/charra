@@ -5,7 +5,7 @@ cd /tmp
 sudo pkill -9 swtpm
 
 ## remove TPM2 simulator state and delete FAPI keystore
-if [ -e /tmp/swtpm20 ]; then
+if [ -e '/tmp/swtpm20' ]; then
     sudo rm -rf -- '/tmp/swtpm20'
 
     jq -r '.user_dir, .system_dir' '/usr/local/etc/tpm2-tss/fapi-config.json' |
